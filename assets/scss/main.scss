@@ -1,0 +1,66 @@
+@import "variables";
+
+html {
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+#__nuxt {
+  height: 100%;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+}
+
+.is-fullheight {
+  height: 100% !important;
+}
+.is-fullwidth {
+  width: 100% !important;
+}
+.scrollable-y {
+  overflow: scroll;
+  max-height: 100%;
+}
+
+.is-sticky {
+  position: sticky;
+}
+
+.flex {
+  display: flex;
+}
+.flex-1 {
+  flex: 1;
+}
+
+.ml-a {
+  margin-left: auto;
+}
+
+.button {
+  font-weight: bold;
+}
+
+.field {
+  .label {
+    color: grey;
+    font-size: $size-7;
+  }
+}
