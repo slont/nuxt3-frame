@@ -16,6 +16,18 @@ const user = inject(UserIK)!
         <label class="label">Name: </label>
         <p>{{ user.name }}</p>
       </div>
+      <div class="field">
+        <label class="label">Gender: </label>
+        <p>{{ user.gender }}</p>
+      </div>
+
+<!--      <footer>-->
+<!--        <router-link :to="`/users/${$route.params.userId}/edit`" custom v-slot="{ navigate }">-->
+<!--          <button class="button is-success is-outlined" @click="navigate">-->
+<!--            <span>編集</span>-->
+<!--          </button>-->
+<!--        </router-link>-->
+<!--      </footer>-->
     </div>
   </div>
 </template>

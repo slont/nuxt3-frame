@@ -1,20 +1,25 @@
 <script lang="ts" setup>
-import { provide, reactive, useRoute } from '#imports'
+import { computed, provide, reactive, ref, useRoute } from '#imports'
 import { createUserRepo } from '~/repos/user'
 import { UserIK } from '~/useCaces/injection'
 
 const route = useRoute()
+const isReady = ref(true)  // FIXME: falseに
+const isActiveModal = ref(false)
 const user = reactive({
   id: '',
   name: '',
   gender: '',
 })
 
+const lastDir = computed(() => route.path.split('/').slice(-1)[0])
+
 provide(UserIK, user)
 
 /** Init **/
 createUserRepo().get(route.params.userId as string).then(res => {
   Object.assign(user, res)
+  isReady.value = true
 })
 </script>
 
@@ -36,16 +41,26 @@ createUserRepo().get(route.params.userId as string).then(res => {
       </div>
 
       <div class="is-absolute" style="right: 1rem">
-        <router-link :to="`/users/${$route.params.userId}/edit`" custom v-slot="{ navigate }">
+        <router-link v-if="'detail' === lastDir" to="edit" custom v-slot="{ navigate }">
           <button class="button is-success is-inverted" @click="navigate">
             <span>編集</span>
+          </button>
+        </router-link>
+        <button v-else-if="'tasks' === lastDir" class="button is-primary is-inverted" @click="isActiveModal = true">
+          <span>新規作成</span>
+        </button>
+        <router-link v-else-if="['blocks', 'mutes'].includes(lastDir)" to="createBlock" custom v-slot="{ navigate }">
+          <button class="button is-success is-inverted" @click="navigate">
+            <span>新規作成</span>
           </button>
         </router-link>
       </div>
     </header>
 
-    <NuxtChild class="scrollable-y is-flex is-flex-direction-column" />
+    <NuxtChild v-if="isReady" class="scrollable-y is-flex is-flex-direction-column" />
   </main>
+
+  <TaskCreateModal v-model="isActiveModal" />
 </template>
 
 <style lang="scss" scoped>

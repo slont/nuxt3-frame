@@ -67,3 +67,18 @@ ul {
     font-size: $size-7;
   }
 }
+
+.zoom-out-enter-active,
+.zoom-out-leave-active {
+  transition: opacity 150ms ease-out;
+  .modal-card {
+    transition: transform 150ms ease-out;
+  }
+}
+.zoom-out-enter-from,
+.zoom-out-leave-to {
+  opacity: 0;
+  .modal-card {
+    transform: scale(1.05)
+  }
+}
