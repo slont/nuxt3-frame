@@ -19,8 +19,10 @@ export const createUserRepo = () => {
     }
   }
 
+  const get = async (id: string) => USERS.find(it => id === it.id)
+
   return {
-    getList,
+    getList, get,
   }
 }
 
