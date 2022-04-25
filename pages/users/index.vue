@@ -33,7 +33,11 @@ refresh()
       </div>
       <div class="is-flex flex-1 py-2 pr-4">
         <button class="button is-info is-outlined is-inverted" @click="reset"><span>クリア</span></button>
-        <button class="button is-primary ml-auto"><span>新規作成</span></button>
+        <router-link to="/createUser" custom v-slot="{ navigate }">
+          <button class="button is-primary ml-auto" @click="navigate">
+            <span>新規作成</span>
+          </button>
+        </router-link>
       </div>
     </header>
 
